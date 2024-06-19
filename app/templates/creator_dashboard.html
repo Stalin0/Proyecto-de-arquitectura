@@ -1,0 +1,28 @@
+<!-- creator_dashboard.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Dashboard del Creador de Cursos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Bienvenido, {{ usuario[1] }} {{ usuario[2] }}</h2>
+    <p>Email: {{ usuario[3] }}</p>
+    <p>Tipo de Usuario: {{ usuario[5] }}</p>
+
+    <h3>Crear Nuevo Curso</h3>
+    <form action="{{ url_for('creator_dashboard') }}" method="POST">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <label for="status">Estado:</label>
+        <select id="status" name="status">
+            <option value="En construcción">En construcción</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+        </select>
+        <button type="submit">Crear Curso</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard del Administrador{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Bienvenido, {{ usuario[1] }} {{ usuario[2] }}</h2>
+    <p>Email: {{ usuario[3] }}</p>
+    <p>Tipo de Usuario: {{ usuario[5] }}</p>
+
+    <h3>Registrar Nuevo Usuario</h3>
+    <form action="{{ url_for('admin_dashboard') }}" method="POST">
+        <label for="first_name">Nombre:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        <label for="last_name">Apellido:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="user_type">Tipo de Usuario:</label>
+        <select id="user_type" name="user_type">
+            <option value="Administrador">Administrador</option>
+            <option value="Creador de Cursos">Creador de Cursos</option>
+            <option value="Consumidor de Cursos">Consumidor de Cursos</option>
+        </select>
+        <button type="submit">Registrar Usuario</button>
+    </form>
+    <a href="{{ url_for('ver_usuarios') }}">Ver Todos los Usuarios</a>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard del Consumidor{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Bienvenido, {{ usuario[1] }} {{ usuario[2] }}</h2>
+    <p>Email: {{ usuario[3] }}</p>
+    <p>Tipo de Usuario: {{ usuario[5] }}</p>
+
+    <h3>Cursos Disponibles</h3>
+    <form action="{{ url_for('select_course') }}" method="POST">
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Seleccionar</th>
+            </tr>
+            {% for curso in cursos %}
+            <tr>
+                <td>{{ curso[1] }}</td>  <!-- Assuming title is at index 1 -->
+                <td>{{ curso[2] }}</td>  <!-- Assuming description is at index 2 -->
+                <td>{{ curso[3] }}</td>  <!-- Assuming creator_id is at index 3 -->
+                <td>
+                    <input type="radio" name="curso_id" value="{{ curso[0] }}">  <!-- Assuming course ID is at index 0 -->
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Seleccionar Curso</button>
+    </form>
+
+    <h3>Cursos Seleccionados</h3>
+    <a href="{{ url_for('selected_courses') }}">Ver Cursos Seleccionados</a>
+</div>
+{% endblock %}

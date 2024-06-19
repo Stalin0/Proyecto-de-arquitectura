@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Cursos Seleccionados{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Cursos Seleccionados por {{ usuario[1] }} {{ usuario[2] }}</h2>
+    <table>
+        <tr>
+            <th>Creado por</th>
+            <th>Título</th>
+            <th>Descripción</th>
+        </tr>
+        {% for curso in cursos_seleccionados %}
+        <tr>
+            <td>{{ curso[0] }}</td>  <!-- Assuming title is at index 0 -->
+            <td>{{ curso[1] }}</td>  <!-- Assuming description is at index 1 -->
+            <td>{{ curso[2] }}</td>  <!-- Assuming creator_id is at index 2 -->
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('consumer_dashboard') }}">Regresar al Dashboard</a>
+</div>
+{% endblock %}
